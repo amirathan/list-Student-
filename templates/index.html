@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fakultas Pertanian ULM </title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="static/css/style.css" rel="stylesheet">
+</head>
+
+     <!-- Navbar Start -->
+  
+   
+    <!-- Navbar End -->
+
+    <!-- Navbar End -->
+
+
+
+    <!-- Header Start -->
+    <!-- Header End -->
+
+
+    <!-- About Start -->
+    <div class="position-relative d-flex align-items-center justify-content-center">
+    <h1 class="display-6 text-uppercase text-white" style="-webkit-text-stroke: 1px #dee2e6;"></h1>
+    </div> 
+        
+    {% for rs in student.items %}
+    <div class="container-fluid py-3" id="about">
+        <div class="container">
+            <div class="position-relative d-flex align-items-center justify-content-center">
+                <h1 class="display-1 text-uppercase text-white" style="-webkit-text-stroke: 1px #20374e;"><img class="img-fluid rounded w-60" src="static/img/lg.jpg"></h1>
+                <h1 class="position-absolute text-uppercase text-primary"></h1>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-5 pb-3 pb-lg-1">
+                    <img class="img-fluid rounded w-60" src="static/img/{{rs.nim}}.jpg" alt="Gambar Siswa">
+                </div>
+
+                <div class="col-lg-7">
+                    <h3 class="mb-4">Judul Skripsi </h3>
+                    <p>{{rs.skripsi}}</p>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-6 py-2"><h6>Nama: <span class="text-secondary">{{rs.nama}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Nim  : <span class="text-secondary">{{rs.nim}} </span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Program Studi  : <span class="text-secondary">{{rs.prodi}} </span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Lama Studi : <span class="text-secondary">{{rs.lama }}-tahun </span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>IPK : <span class="text-secondary">{{rs.ipk}}</span></h6></div>
+                        <div class="col-sm-6 py-2"><h6>Status : <span class="text-secondary">{{rs.status}} </span></h6></div>
+                    </div>
+                  
+                    <div style="border-top: 3px dotted #00ff7f; margin-top: 1em; padding-top: 1em;">
+                    </div>
+                    
+
+                </div>
+            </div>
+       
+    {% endfor %}
+<br>
+<br>
+    <ul class="pagination">
+        {% if student.has_prev %}
+         <li class="page-item"><a class="page-link" href="{{ url_for('student', page_num=student.prev_num) }}">Previous</a></li>
+        {% else %}
+         <li class="page-item disabled"><span class="page-link">Previous</span>
+        {% endif %}
+         </li>
+           
+        {% for page in student.iter_pages(left_edge=2, right_edge=2) %}
+        {% if page %}
+         <li class="page-item"><a class="page-link" href="{{ url_for('student', page_num=page) }}">{{ page }}</a></li>
+        {% else %}
+         <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link">…</a></li> 
+        {% endif %}
+        {% endfor %}
+         
+        {% if student.has_next %}
+         <li class="page-item"><a class="page-link" href="{{ url_for('student', page_num=student.next_num) }}">Next</a></li>
+        {% else %}
+         <li class="page-item disabled"><span class="page-link">Next</span>
+        {% endif %}
+         </ul>
+    </div>
+    <!-- JavaScript Libraries -->
+
+    <!-- Contact Javascript File -->
+   
+    <!-- Template Javascript -->
+    
+
+    <script src="static/js/main.js"></script>
+    </body>
+
+</html>
